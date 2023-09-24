@@ -1,0 +1,29 @@
+{
+  "name": "whatsapp-bot (GSS-Botwa",
+  "description": " Whatsapp bot.",
+  "keywords": [
+    "whatsapp bot"
+  ],
+  "repository": "https://github.com/sid238/Gss-Botwa",
+  "stack": "container",
+  "env": {
+    "OPENAI_API_KEY": {
+      "description": "openai apikey",
+      "required": true,
+      "value": ""
+    },
+    "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git"
+    },
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+    },
+    {
+      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
+    }
+  ]
+}
