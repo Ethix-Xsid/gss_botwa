@@ -604,12 +604,13 @@ function getCurrentMode() {
 
 ╭◯━*Anime (18+)*━━━━◯
 │ 🔞 - nsfw Menu
+│ 📵 - .AntiNsfw 
 ╰◯━━━━━━━━━━━━━◯
           `);
     
 break;
 
-case 'nsfw menu':
+case 'nsfw':
   if (!AntiNsfw) return reply('nsfw not enable in this group')
     await m.reply(`
 ╭◯━*Anime (18+)*━━━━◯
@@ -647,7 +648,7 @@ case 'nsfw menu':
     `);
 break;
 
-case 'nsfw': {
+case 'AntiNsfw': {
   if (!m.isGroup) return reply('this is only for group')
 if (!isAdmins) return reply('this feature is only for admin')
 if (args[0] === "on") {
