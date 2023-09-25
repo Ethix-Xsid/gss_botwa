@@ -376,25 +376,28 @@ for (let i = 0; i < goutamload.length; i++) {
 }}  
   
 
-if (process.env.REACODING || 'true' === 'true' && command) {
-client.sendPresenceUpdate('composing', from)
-}
-if (process.env.AUTO_READ || 'true' === 'true' && command) {
-client.readMessages([m.key])
-}
-if (process.env.ALWAYS_ONLINE || 'false' === 'false') { 
-  client.sendPresenceUpdate('available', m.chat) 
-}
-else {
-  client.sendPresenceUpdate('unavailable', m.chat)
+let TYPING_ENABLED = process.env.AUTO_TYPING === 'true';
+let AUTO_READ_ENABLED = process.env.AUTO_READ === 'true';
+let ALWAYS_ONLINE = process.env.ALWAYS_ONLINE === 'true';
+
+// Now, you can use these variables in your conditions:
+
+if (TYPING_ENABLED && command) {
+  // Execute code when REACODING is enabled
+  client.sendPresenceUpdate('composing', from);
 }
 
-if (process.env.AUTO_BLOCKER && (m.sender.startsWith('212')||m.sender.startsWith('994'))) {
-  client.updateBlockStatus(m.sender, 'block');
+if (AUTO_READ_ENABLED && command) {
+  // Execute code when AUTO_READ is enabled
+  client.readMessages([m.key]);
+}
 
-  if (m.isGroup) {
-    client.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
-  }
+if (ALWAYS_ONLINE) {
+  // Execute code when ALWAYS_ONLINE is enabled
+  client.sendPresenceUpdate('available', m.chat);
+} else {
+  // Execute code when ALWAYS_ONLINE is disabled
+  client.sendPresenceUpdate('unavailable', m.chat);
 }
 
 
@@ -1765,19 +1768,50 @@ if (!isAdmins) return reply('this feature is only for admin')
     break;
 }
 
-case 'autoread': {
+case 'autoread':
   if (!GssCreator && !GssOwner) return reply('you are not my owner')
-  if (!args[0]) return reply(`Send the command with options: on or off. Example: ${prefix}${command} on`);
-
-  if (args[0].toLowerCase() === 'on') {
+  if (args[0] === 'on') {
     AUTO_READ = true;
-  } else if (args[0].toLowerCase() === 'off') {
+    process.env.AUTO_READ = 'true';
+    reply('Auto Read turned on.');
+  } else if (args[0] === 'off') {
     AUTO_READ = false;
+    process.env.AUTO_READ = 'false';
+    reply('Auto Read turned off.');
   } else {
     reply('Invalid option. Use "on" or "off".');
   }
   break;
-}
+
+case 'alwaysonline':
+  if (!GssCreator && !GssOwner) return reply('you are not my owner')
+  if (args[0] === 'on') {
+    ALWAYS_ONLINE = true;
+    process.env.ALWAYS_ONLINE = 'true';
+    reply('Always Online turned on.');
+  } else if (args[0] === 'off') {
+    ALWAYS_ONLINE = false;
+    process.env.ALWAYS_ONLINE = 'false';
+    reply('Always Online turned off.');
+  } else {
+    reply('Invalid option. Use "on" or "off".');
+  }
+  break;
+
+case 'autotyping':
+  if (!GssCreator && !GssOwner) return reply('you are not my owner')
+  if (args[0] === 'on') {
+    TYPING_ENABLED = true;
+    process.env.AUTO_TYPING = 'true';
+    reply('Recording turned on.');
+  } else if (args[0] === 'off') {
+    TYPING_ENABLED = false;
+    process.env.AUTO_TYPING = 'false';
+    reply('Recording turned off.');
+  } else {
+    reply('Invalid option. Use "on" or "off".');
+  }
+  break;
 
 
 case 'linkgc': {
@@ -2656,10 +2690,10 @@ default: {
     if (!budy.toLowerCase()) return;
     if (argsLog || (isCmd && !m.isGroup)) {
       // Send an alert message to the user
-      reply("*Invalid command. Please check the command and try again. To see the available commands, use !menu.*");
+      reply("*Invalid command. Please check the command and try again and make sure you send comand without any space. To see the available commands, use !menu.*");
     } else if (argsLog || (isCmd && m.isGroup)) {
       // Send an alert message to the user
-      reply("*Invalid command. Please check the command and try again.To see the available commands, use !menu.*");
+      reply("*Invalid command. Please check the command and try again and make sure you send comand without any space To see the available commands, use !menu.*");
     }
   }
 }
