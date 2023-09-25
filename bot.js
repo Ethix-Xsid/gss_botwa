@@ -1773,11 +1773,11 @@ case 'autoread':
   if (args[0] === 'on') {
     AUTO_READ = true;
     process.env.AUTO_READ = 'true';
-    reply('Auto Read turned on.');
+    reply('*Auto Read turned on.*');
   } else if (args[0] === 'off') {
     AUTO_READ = false;
     process.env.AUTO_READ = 'false';
-    reply('Auto Read turned off.');
+    reply('*Auto Read turned off.*');
   } else {
     reply('Invalid option. Use "on" or "off".');
   }
@@ -1788,7 +1788,7 @@ case 'alwaysonline':
   if (args[0] === 'on') {
     ALWAYS_ONLINE = true;
     process.env.ALWAYS_ONLINE = 'true';
-    reply('Always Online turned on.');
+    reply('*Always Online turned on.*');
   } else if (args[0] === 'off') {
     ALWAYS_ONLINE = false;
     process.env.ALWAYS_ONLINE = 'false';
@@ -1803,11 +1803,11 @@ case 'autotyping':
   if (args[0] === 'on') {
     TYPING_ENABLED = true;
     process.env.AUTO_TYPING = 'true';
-    reply('Recording turned on.');
+    reply('*AUTO TYPING turned on.*');
   } else if (args[0] === 'off') {
     TYPING_ENABLED = false;
     process.env.AUTO_TYPING = 'false';
-    reply('Recording turned off.');
+    reply('*AUTO TYPING turned off.*');
   } else {
     reply('Invalid option. Use "on" or "off".');
   }
