@@ -648,7 +648,7 @@ case 'nsfw':
     `);
 break;
 
-case 'AntiNsfw': {
+case 'antinsfw': {
   if (!m.isGroup) return reply('this is only for group')
 if (!isAdmins) return reply('this feature is only for admin')
 if (args[0] === "on") {
