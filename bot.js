@@ -61,6 +61,7 @@ const { parseMention } = require('./lib/myfunc.js');
 let argsLog;
 let ntlinkgc =JSON.parse(fs.readFileSync('./database/antilinkgc.json'));
 let nttoxic = JSON.parse(fs.readFileSync('./database/antitoxic.json'))
+let ntnsfw = JSON.parse(fs.readFileSync('./database/nsfw.json'))
 let format = sizeFormatter({ 
      std: 'JEDEC', // 'SI' (default) | 'IEC' | 'JEDEC' 
      decimalPlaces: 2, 
@@ -89,7 +90,7 @@ const MODE = process.env.MODE;
 
 //const thinking = await client.sendMessage(m.chat, { text: 'Thinking...' }); 
 const BOT_NAME = process.env.BOT_NAME || 'GSS Botwa'
-const OWNER_NAME = process.env.OWNER_NAME || 'Goutam'
+const OWNER_NAME = process.env.OWNER_NAME || 'Gss owner'
 const APIKEY = process.env.APIKEY;
 const mentionUser = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.sender] : [])])]
 
@@ -113,6 +114,7 @@ const prem = JSON.parse(fs.readFileSync('./database/premium.json'))
         const isGroupAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
 	const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
 	const Antilinkgc = m.isGroup ? ntlinkgc.includes(m.chat) : false
+	const AntiNsfw = m.isGroup ? ntnsfw.includes(from) : false
 	
 	const GssCreator = [owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
   const GssOwner = m.sender == botNumber ? true : false
@@ -164,13 +166,7 @@ const seconds = Math.floor(uptime % 60); // Calculate seconds
   
       const color = (text, color) => {  
         return !color ? chalk.green(text) : chalk.keyword(color)(text);  
-      };  
-global.db = JSON.parse(fs.readFileSync('./database/database.json'))
-if (global.db) global.db = {
-others: {},
-...(global.db || {})
-}
-let vote = db.others.vote = []
+      };
   
   
 async function replyprem(teks) {
@@ -500,6 +496,8 @@ function getCurrentMode() {
    await m.reply(`
    Hi 👋 *${pushname}*
    
+   *{pushwish}* 
+   
 ╭◯━━━  *Bot Info* ━━━◯
 │ 🤖 *Bot Name* : *GSS_BOTWA*
 │ 👤 *Owner Name* : *${OWNER_NAME}*
@@ -605,13 +603,14 @@ function getCurrentMode() {
 ╰◯━━━━━━━━━━━━━◯
 
 ╭◯━*Anime (18+)*━━━━◯
-│ 🔞 - nsfw
+│ 🔞 - nsfw Menu
 ╰◯━━━━━━━━━━━━━◯
           `);
     
 break;
 
-case 'nsfw':
+case 'nsfw menu':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
     await m.reply(`
 ╭◯━*Anime (18+)*━━━━◯
 │ 🍑 - .hentai 🅕 
@@ -647,6 +646,33 @@ case 'nsfw':
 ╰◯━━━━━━━━━━━━━◯
     `);
 break;
+
+case 'nsfw': {
+  if (!m.isGroup) return reply('this is only for group')
+if (!isAdmins) return reply('this feature is only for admin')
+if (args[0] === "on") {
+if (AntiNsfw) return reply('Already activated')
+ntnsfw.push(from)
+fs.writeFileSync('./database/nsfw.json', JSON.stringify(ntnsfw))
+reply('Success in turning on nsfw feature in this group')
+var groupe = await client.groupMetadata(from)
+var members = groupe['participants']
+var mems = []
+members.map(async adm => {
+mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
+})
+client.sendMessage(from, {text: `Warning: You have activated NSFW in your group, which is not considered safe.t!`, contextInfo: { mentionedJid : mems }}, {quoted:m})
+} else if (args[0] === "off") {
+if (!AntiNsfw) return reply('Already deactivated')
+let off = ntnsfw.indexOf(from)
+ntnsfw.splice(off, 1)
+fs.writeFileSync('./database/nsfw.json', JSON.stringify(ntnsfw))
+reply('Success in turning off nsfw feature in this group')
+} else {
+  await reply(`Please Type The Option\n\nExample: ${prefix + command} on\nExample: ${prefix + command} off\n\non to enable\noff to disable`)
+  }
+  }
+  break
 
 
 case 'song':
@@ -1493,54 +1519,63 @@ case "sc":
           break;
 
 case 'ahegao':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/ahegao.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'ass':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/ass.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'bdsm':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/bdsm.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'milf':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/milf.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'blowjob':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/blowjob.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'cuckold':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/cuckold.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'cum':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/cum.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'eba':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/eba.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'ero':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/pussy.json'))
@@ -1548,48 +1583,56 @@ var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'femdom':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/femdom.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'foot':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/foot.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'gangbang':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/gangbang.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'glasses':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/glasses.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'hentai':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/hentai.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'jahy':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/jahy.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'manga':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/manga.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'masturbation':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/masturbation.json'))
 var nsfwresult = pickRandom(botwansfw)
@@ -1597,42 +1640,49 @@ client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'neko-hentai':
 case 'neko':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/neko.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'neko-hentai2':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/neko2.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'nsfwloli':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/nsfwloli.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'orgy':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/orgy.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'panties':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/panties.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'pussy':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/pussy.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'tentacles':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/tentacles.json'))
 var nsfwresult = pickRandom(botwansfw)
@@ -1640,18 +1690,21 @@ client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'thighs':
 case 'trap':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/thighs.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'yuri':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/yuri.json'))
 var nsfwresult = pickRandom(botwansfw)
 client.sendImage(from, nsfwresult, pushname, mek)
 break;
 case 'zettai':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 loading()
 var botwansfw = JSON.parse(fs.readFileSync('./media/nsfw/zattai.json'))
 var nsfwresult = pickRandom(botwansfw)
@@ -1659,6 +1712,7 @@ client.sendImage(from, nsfwresult, pushname, mek)
 break;
 
 case 'gifblowjob':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 //if (!m.isGroup) return m.reply("only work in group");
 //if xufufzitx
 loading()
@@ -1670,6 +1724,7 @@ loading()
     break;
 
 case 'gifhentai':
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
 //if (!m.isGroup) return m.reply("only work in group");
 //if xufufzitx
 loading()
@@ -2565,149 +2620,6 @@ case 'poll': {
         break
 
 
-case 'vote': {
-  if (!m.isGroup) return reply('Only for groups');
-          if (!isAdmins && !GssCreator) return reply('you are not an admin')
-            if (m.chat in vote) return reply(`_There are still votes in this chat!_\n\n*${prefix}deletevote* - to delete votes`)
-            if (!text) return reply(`Enter Reason for Vote, Example: *${prefix + command} Handsome Owner*`)
-            reply(`Voting starts!\n\n*${prefix}upvote* - for upvote\n*${prefix}downvote* - for downvote\n*${prefix}checkvote* - to check the vote\n*${prefix}deletevote* - to delete vote`)
-            vote[m.chat] = [q, [], []]
-            await sleep(1000)
-            upvote = vote[m.chat][1]
-            devote = vote[m.chat][2]
-            teks_vote = `* VOTE *
-
-*Reason:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${vote[m.chat][1].length}
-│
-│ 
-└────
-
-┌〔 DOWNVOTE 〕
-│ 
-├ Total: ${vote[m.chat][2].length}
-│
-│ 
-└────
-
-Please Type Below
-*${prefix}upvote* - to cast vote
-*${prefix}downvote* -  to downvote
-*${prefix}deletevote* - to delete vote`
-            client.sendMessage(m.chat, {text: teks_vote}, {quoted:m})
-	    }
-            break
-               case 'upvote': {
-                 if (!m.isGroup) return reply('Only for groups');
-            if (!isAdmins && !GssCreator) return reply('you are not an admin')
-            if (!(m.chat in vote)) return reply(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`)
-            isVote = vote[m.chat][1].concat(vote[m.chat][2])
-            wasVote = isVote.includes(m.sender)
-            if (wasVote) return reply('You have Voted')
-            vote[m.chat][1].push(m.sender)
-            menvote = vote[m.chat][1].concat(vote[m.chat][2])
-            teks_vote = `* VOTE *
-
-*Reason:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-┌〔 DOWNVOTE 〕
-│ 
-├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-Please Type Below
-*${prefix}upvote* - to upvote
-*${prefix}downvote* -  to downvote
-*${prefix}deletevote* - to delete vote`
-            client.sendMessage(m.chat, {text: teks_vote, mentions: menvote}, {quoted:m})
-	    }
-             break
-                case 'downvote': {
-                  if (!m.isGroup) return reply('Only for groups');
-            if (!isAdmins && !GssCreator) return reply('you are not an admin')
-            if (!(m.chat in vote)) return reply(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`)
-            isVote = vote[m.chat][1].concat(vote[m.chat][2])
-            wasVote = isVote.includes(m.sender)
-            if (wasVote) return reply('You have Voted')
-            vote[m.chat][2].push(m.sender)
-            menvote = vote[m.chat][1].concat(vote[m.chat][2])
-            teks_vote = `* VOTE *
-
-*Reason:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-┌〔 DOWNVOTE 〕
-│ 
-├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-Please Type Below
-*${prefix}upvote* - to upvote
-*${prefix}downvote* -  to downvote
-*${prefix}deletevote* - to delete vote`
-            client.sendMessage(m.chat, {text: teks_vote, mentions: menvote}, {quoted:m})
-	}
-            break
-                 
-case 'checkvote':
-  if (!m.isGroup) return reply('Only for groups');
-if (!isAdmins && !GssCreator) return reply('you are not an admin')
-if (!(m.chat in vote)) return reply(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`)
-teks_vote = `* VOTE *
-
-*Reason:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-├ Total: ${upvote.length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-┌〔 DOWNVOTE 〕
-│ 
-├ Total: ${devote.length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-*${prefix}deletevote* - to delete votes
-
-
-©${client.user.id}
-`
-client.sendTextWithMentions(m.chat, teks_vote, m)
-break
-		case 'deletevote': case'delvote': case 'hapusvote': {
-		  if (!m.isGroup) return reply('Only for groups');
-            if (!isAdmins && !GssCreator) return reply('you are not an admin')
-            if (!(m.chat in vote)) return reply(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`)
-            delete vote[m.chat]
-            reply('Successfully Deleted Vote Session In This Group')
-	    }
-            break
-
-
 
 case 'join': {
   if (!isAdmins && !GssCreator) return reply('you are not an admin')
@@ -2732,40 +2644,6 @@ let link = 'https://chat.whatsapp.com/' + await client.groupInviteCode(group)
         reply(` An invite link is sent to the user`) 
 }
 break
-    
-    
-case 'antilinkgc': {
-    1
-    if (!isAdmins && !gsscreator) return reply('Test');
-    
-    if (args[0] === "on") {
-        if (Antilinkgc) return reply('Already activated');
-        ntlinkgc.push(from);
-        fs.writeFileSync('./database/antilinkgc.json', JSON.stringify(ntlinkgc));
-        reply('Success in turning on antilink in this group');
-        
-        var groupe = await client.groupMetadata(from);
-        var members = groupe['participants'];
-        var mems = [];
-        
-        members.forEach(adm => {
-            mems.push(adm.id.replace('c.us', 's.whatsapp.net'));
-        });
-        
-        // Send the warning message only once
-        client.sendMessage(from, {text: `\`\`\`「 ️ Warning 」\`\`\`\n\nNobody is allowed to send group links in this group. Those who send links will be kicked immediately!`, contextInfo: { mentionedJid: mems }}, { quoted: m });
-    } else if (args[0] === "off") {
-        if (!Antilinkgc) return reply('Already deactivated');
-        let off = ntlinkgc.indexOf(from);
-        ntlinkgc.splice(off, 1);
-        fs.writeFileSync('./database/antilinkgc.json', JSON.stringify(ntlinkgc));
-        reply('Success in turning off antilink in this group');
-    } else {
-        await reply(`Please type the option\n\nExample: ${prefix + command} on\nExample: ${prefix + command} off\n\n"on" to enable\n"off" to disable`);
-    }
-}
-break;
-
 
 
 
