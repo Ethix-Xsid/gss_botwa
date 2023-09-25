@@ -32,8 +32,8 @@ require("dotenv").config();
   const ffmpeg = require('fluent-ffmpeg');
 // Your code using fetch here
   const { MessageType, Mimetype } = require('@adiwajshing/baileys');
-const botname = "GSS Botwa";
-const OWNER_NAME = "Sid bhai";
+const botname = "𝐆𝐒𝐒_𝚩𝚯𝚻𝐖𝚫";
+const OWNER_NAME = "𝐒𝚰𝐃 𝚩𝚮𝚫𝚰";
    const crypto = require('crypto');
   const fg = require('api-dylux');
 const { pipeline } = require('stream');
@@ -89,8 +89,7 @@ const owner = "919142294671";
 const MODE = process.env.MODE;
 
 //const thinking = await client.sendMessage(m.chat, { text: 'Thinking...' }); 
-const BOT_NAME = process.env.BOT_NAME || 'GSS Botwa'
-const OWNER_NAME = process.env.OWNER_NAME || 'Gss owner'
+const USER_NAME  = process.env.USER_NAME || ''
 const APIKEY = process.env.APIKEY;
 const mentionUser = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.sender] : [])])]
 
@@ -502,8 +501,9 @@ function getCurrentMode() {
    *${pushwish}* 
    
 ╭◯━━━  *Bot Info* ━━━◯
-│ 🤖 *Bot Name* : *GSS_BOTWA*
+│ 🤖 *Bot Name* : *${botname}*
 │ 👤 *Owner Name* : *${OWNER_NAME}*
+│ Bot user : ${USER_NAME}
 │ 👨‍💻 *owner number* : *${owner}*
 │ 🚀 *Prefix* :  *${prefix}*
 │ ⏳ *Uptime* : *${hours}h ${minutes}m ${seconds}s*
@@ -618,8 +618,8 @@ function getCurrentMode() {
 │ 📵 - .AntiNsfw   🅞
 ╰◯━━━━━━━━━━━━━◯
 
-  🤖 𝐆𝐬𝐬_𝐁𝐨𝐭𝐰𝐚 
-👨‍💻 𝐜𝐫𝐞𝐚𝐭𝐞𝐝 𝐛𝐲 𝐠𝐬𝐬 𝐭𝐞𝐚𝐦
+🤖 𝐆𝐒𝐒_𝚩𝚯𝚻𝐖𝚫 
+👨‍💻 *𝐶𝑅𝛯𝛥𝑇𝛯𝐷 𝐵𝑌* :𝐒𝚰𝐃 𝚩𝚮𝚫𝚰 & 𝐆𝚫𝐔𝚻𝚫𝚳
 
           `);
     
