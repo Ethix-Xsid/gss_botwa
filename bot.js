@@ -534,45 +534,46 @@ function getCurrentMode() {
 
 ╭◯━━━━ *Tools Menu* ━━━━━◯
 │ 🗣 - .tts 🅕
-│ 📋 - .delete 🅕
+│ 📋 - .delete  🅞
 │ 🌐 - .translate 🅕
 │ ℹ️ - .info 🅕
-│ 🧬 - Getbio
-│ 🖇️ - tinyurl
-│ 📧 - tempmail
-│ 📩 - checkmail
+│ 🧬 - Getbio  🅕
+│ 🖇️ - tinyurl 🅕
+│ 📧 - tempmail 🅕
+│ 📩 - checkmail 🅕
 ╰◯━━━━━━━━━━━━━◯
 
 ╭◯━━ *Group Menu* ━━━━━◯
-│ 🚫 - .kick @user
-│ ➕ - .add @user
-│ 👑 - .promote @user
-│ 👤 - .demote @user
-│ 📣 - .group off / on
-│ 🔗 - .linkgc
-│ 🕠 - closetime
-│ 🕥 - opentime
-│ ️⛓️ - Antilinkgc
-│ 🗣️ - antitoxic
-╰◯━━━━━━━━━━━━━◯
+│ 🚫 - .kick @user  🅖
+│ 🚫 - .kick @user 🅖
+│ ➕ - .add @user  🅖
+│ 👑 - .promote @user  🅖
+│ 👤 - .demote @user  🅖
+│ 📣 - .group off / on  🅖
+│ 🔗 - .linkgc  🅖
+│ 🕠 - closetime  🅖
+│ 🕥 - opentime  🅖
+│ ️⛓️ - Antilinkgc  🅖
+│ 🗣️ - antitox i  🅖
+╰◯━━━━━━━━━━━━━◯ 
 
 ╭◯━━━━ *Owner Menu* ━━━━━◯
-│ ✏️ - .setname 🅕
-│ 📝 - .setbio 🅕
-│ 🚫 - .block 🅕
-│ ✅ - .unblock 🅕
-│ 😴 - .sleep 🅕
-│ 🔁 - .autoread 🅕
-│ 🌐 - .self 🅕
-│ 🌍 - .public 🅕
-│ 🆕 - .addowner 🅕
-│ 🚮 - .delowner 🅕
-│ ➕ - .addrpem 🅕
-│ ➖ - .delprem 🅕
-│ ➕🚫 - .addbadword 🅕
-│ ➖🚫 - .delbadword 🅕
-│ 📋 - .listprem 🅕
-│ 📋🚫 - .listbadword 🅕
+│ ✏️ - .setname  🅞
+│ 📝 - .setbio  🅞
+│ 🚫 - .block 🅞
+│ ✅ - .unblock 🅞
+│ 😴 - .sleep 🅞
+│ 🔁 - .autoread  🅞
+│ 🌐 - .self 🅞
+│ 🌍 - .public  🅞
+│ 🆕 - .addowner 🅞
+│ 🚮 - .delowner  🅞
+│ ➕ - .addrpem 🅞
+│ ➖ - .delprem 🅞
+│ ➕🚫 - .addbadword  🅞
+│ ➖🚫 - .delbadword  🅞
+│ 📋 - .listprem  🅞
+│ 📋🚫 - .listbadword  🅞
 ╰◯━━━━━━━━━━━━━◯
 
 ╭◯━━ *Bug Reporting* ━━◯
@@ -587,7 +588,7 @@ function getCurrentMode() {
 │ 🔍 - .google 🅕
 │ 📷 - .insta 🅕
 │ 📦 - .apk 🅕
-│ 🎬 - .yts
+│ 🎬 - .yts 🅕
 │ 🌦️ - .weather 🅕
 │ 🎵 - .lyrics 🅕
 │ 🕵️️ - .githubstalk 🅕
@@ -595,16 +596,16 @@ function getCurrentMode() {
 ╰◯━━━━━━━━━━━━━◯
 
 ╭◯━* Downloaders* ━◯
-│ 🎬 - video
-│ 🎵 - song
-│ 🌐 - fb
-│ 📂 - Gdrive
-│ 🔖 - gitclone
+│ 🎬 - video 🅕
+│ 🎵 - song 🅕
+│ 🌐 - fb 🅕
+│ 📂 - Gdrive 🅕
+│ 🔖 - gitclone 🅕
 ╰◯━━━━━━━━━━━━━◯
 
 ╭◯━*Anime (18+)*━━━━◯
-│ 🔞 - nsfw Menu
-│ 📵 - .AntiNsfw 
+│ 🔞 - nsfw Menu 🅟
+│ 📵 - .AntiNsfw   🅞
 ╰◯━━━━━━━━━━━━━◯
           `);
     
