@@ -2652,7 +2652,7 @@ case 'poll': {
   if (!isAdmins && !GssCreator) return reply('you are not an admin')
             let [poll, opt] = text.split("|")
             if (text.split("|") < 2)
-                return await reply(`Mention question and atleast 2 options\nExample: ${prefix}poll Who is best admin?|Xeon,Cheems,Doge...`
+                return await reply(`Mention question and atleast 2 options\nExample: ${prefix}poll Who is best admin?|sid bhai,gautam`
                 )
             let options = []
             for (let i of opt.split(',')) {
