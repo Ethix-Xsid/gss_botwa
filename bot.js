@@ -496,7 +496,7 @@ function getCurrentMode() {
    await m.reply(`
    Hi 👋 *${pushname}*
    
-   *{pushwish}* 
+   *${pushwish}* 
    
 ╭◯━━━  *Bot Info* ━━━◯
 │ 🤖 *Bot Name* : *GSS_BOTWA*
