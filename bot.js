@@ -558,6 +558,11 @@ function getCurrentMode() {
 │ 🕥 - opentime  🅖
 │ ️⛓️ - Antilinkgc  🅖
 │ 🗣️ - antitox i  🅖
+│ 🚪 - .leavegc 🅖
+│ ️📊 - .poll 🅖
+│ 🤝 - .join 🅖
+│🚫 - .revoke  🅖
+│💌 - .invite  🅖
 ╰◯━━━━━━━━━━━━━◯ 
 
 ╭◯━━━━ *Owner Menu* ━━━━━◯
@@ -577,6 +582,8 @@ function getCurrentMode() {
 │ ➖🚫 - .delbadword  🅞
 │ 📋 - .listprem  🅞
 │ 📋🚫 - .listbadword  🅞
+│ 📝 - .autotyping 🅞
+│ 🌟 - .alwaysonline 🅞
 ╰◯━━━━━━━━━━━━━◯
 
 ╭◯━━ *Bug Reporting* ━━◯
@@ -610,11 +617,16 @@ function getCurrentMode() {
 │ 🔞 - nsfw Menu 🅟
 │ 📵 - .AntiNsfw   🅞
 ╰◯━━━━━━━━━━━━━◯
+
+     𝐈 𝐚𝐦 𝐆𝐬𝐬_𝐁𝐨𝐭𝐰𝐚
+𝐜𝐫𝐞𝐚𝐭𝐞𝐝 𝐛𝐲 𝐠𝐬𝐬 𝐭𝐞𝐚𝐦
+
           `);
     
 break;
 
 case 'nsfw':
+  if (!m.isGroup) return reply('this is only for group')
   if (!AntiNsfw) return reply('nsfw not enable in this group')
     await m.reply(`
 ╭◯━*Anime (18+)*━━━━◯
