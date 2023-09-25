@@ -165,6 +165,13 @@ const seconds = Math.floor(uptime % 60); // Calculate seconds
       const color = (text, color) => {  
         return !color ? chalk.green(text) : chalk.keyword(color)(text);  
       };  
+global.db = JSON.parse(fs.readFileSync('./database/database.json'))
+if (global.db) global.db = {
+others: {},
+...(global.db || {})
+}
+let vote = db.others.vote = []
+  
   
 async function replyprem(teks) {
     m.reply(`This feature is specifically for premium user, contact the owner to become premium user`)
@@ -2511,6 +2518,256 @@ teks += `│\n└────────────⭓\n\n*Totally there are :
 reply(teks)
 }
 break
+
+
+case 'leavegc': {
+  if (!m.isGroup) return reply('Only for groups');
+  if (!GssCreator) return reply('you are not my owner')
+await client.groupLeave(m.chat)
+await reply(`Done`)
+}
+break
+
+
+case 'resetlinkgc':
+case 'resetlinkgroup':
+case 'resetlinkgrup':
+case 'revoke':
+case 'resetlink':
+case 'resetgrouplink':
+case 'resetgclink':
+case 'resetgruplink': {
+  if (!m.isGroup) return reply('Only for groups');
+  if (!isAdmins && !GssCreator) return reply('you are not an admin')
+client.groupRevokeInvite(m.chat)
+await reply('group link reset ')
+}
+break
+
+case 'poll': {
+  if (!m.isGroup) return reply('Only for groups');
+  if (!isAdmins && !GssCreator) return reply('you are not an admin')
+            let [poll, opt] = text.split("|")
+            if (text.split("|") < 2)
+                return await reply(`Mention question and atleast 2 options\nExample: ${prefix}poll Who is best admin?|Xeon,Cheems,Doge...`
+                )
+            let options = []
+            for (let i of opt.split(',')) {
+                options.push(i)
+            }
+            await client.sendMessage(m.chat, {
+                poll: {
+                    name: poll,
+                    values: options
+                }
+            })
+        }
+        break
+
+
+case 'vote': {
+  if (!m.isGroup) return reply('Only for groups');
+          if (!isAdmins && !GssCreator) return reply('you are not an admin')
+            if (m.chat in vote) return reply(`_There are still votes in this chat!_\n\n*${prefix}deletevote* - to delete votes`)
+            if (!text) return reply(`Enter Reason for Vote, Example: *${prefix + command} Handsome Owner*`)
+            reply(`Voting starts!\n\n*${prefix}upvote* - for upvote\n*${prefix}downvote* - for downvote\n*${prefix}checkvote* - to check the vote\n*${prefix}deletevote* - to delete vote`)
+            vote[m.chat] = [q, [], []]
+            await sleep(1000)
+            upvote = vote[m.chat][1]
+            devote = vote[m.chat][2]
+            teks_vote = `* VOTE *
+
+*Reason:* ${vote[m.chat][0]}
+
+┌〔 UPVOTE 〕
+│ 
+├ Total: ${vote[m.chat][1].length}
+│
+│ 
+└────
+
+┌〔 DOWNVOTE 〕
+│ 
+├ Total: ${vote[m.chat][2].length}
+│
+│ 
+└────
+
+Please Type Below
+*${prefix}upvote* - to cast vote
+*${prefix}downvote* -  to downvote
+*${prefix}deletevote* - to delete vote`
+            client.sendMessage(m.chat, {text: teks_vote}, {quoted:m})
+	    }
+            break
+               case 'upvote': {
+                 if (!m.isGroup) return reply('Only for groups');
+            if (!isAdmins && !GssCreator) return reply('you are not an admin')
+            if (!(m.chat in vote)) return reply(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`)
+            isVote = vote[m.chat][1].concat(vote[m.chat][2])
+            wasVote = isVote.includes(m.sender)
+            if (wasVote) return reply('You have Voted')
+            vote[m.chat][1].push(m.sender)
+            menvote = vote[m.chat][1].concat(vote[m.chat][2])
+            teks_vote = `* VOTE *
+
+*Reason:* ${vote[m.chat][0]}
+
+┌〔 UPVOTE 〕
+│ 
+├ Total: ${vote[m.chat][1].length}
+${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+│ 
+└────
+
+┌〔 DOWNVOTE 〕
+│ 
+├ Total: ${vote[m.chat][2].length}
+${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+│ 
+└────
+
+Please Type Below
+*${prefix}upvote* - to upvote
+*${prefix}downvote* -  to downvote
+*${prefix}deletevote* - to delete vote`
+            client.sendMessage(m.chat, {text: teks_vote, mentions: menvote}, {quoted:m})
+	    }
+             break
+                case 'downvote': {
+                  if (!m.isGroup) return reply('Only for groups');
+            if (!isAdmins && !GssCreator) return reply('you are not an admin')
+            if (!(m.chat in vote)) return reply(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`)
+            isVote = vote[m.chat][1].concat(vote[m.chat][2])
+            wasVote = isVote.includes(m.sender)
+            if (wasVote) return reply('You have Voted')
+            vote[m.chat][2].push(m.sender)
+            menvote = vote[m.chat][1].concat(vote[m.chat][2])
+            teks_vote = `* VOTE *
+
+*Reason:* ${vote[m.chat][0]}
+
+┌〔 UPVOTE 〕
+│ 
+├ Total: ${vote[m.chat][1].length}
+${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+│ 
+└────
+
+┌〔 DOWNVOTE 〕
+│ 
+├ Total: ${vote[m.chat][2].length}
+${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+│ 
+└────
+
+Please Type Below
+*${prefix}upvote* - to upvote
+*${prefix}downvote* -  to downvote
+*${prefix}deletevote* - to delete vote`
+            client.sendMessage(m.chat, {text: teks_vote, mentions: menvote}, {quoted:m})
+	}
+            break
+                 
+case 'checkvote':
+  if (!m.isGroup) return reply('Only for groups');
+if (!isAdmins && !GssCreator) return reply('you are not an admin')
+if (!(m.chat in vote)) return reply(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`)
+teks_vote = `* VOTE *
+
+*Reason:* ${vote[m.chat][0]}
+
+┌〔 UPVOTE 〕
+│ 
+├ Total: ${upvote.length}
+${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+│ 
+└────
+
+┌〔 DOWNVOTE 〕
+│ 
+├ Total: ${devote.length}
+${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
+│ 
+└────
+
+*${prefix}deletevote* - to delete votes
+
+
+©${client.user.id}
+`
+client.sendTextWithMentions(m.chat, teks_vote, m)
+break
+		case 'deletevote': case'delvote': case 'hapusvote': {
+		  if (!m.isGroup) return reply('Only for groups');
+            if (!isAdmins && !GssCreator) return reply('you are not an admin')
+            if (!(m.chat in vote)) return reply(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`)
+            delete vote[m.chat]
+            reply('Successfully Deleted Vote Session In This Group')
+	    }
+            break
+
+
+
+case 'join': {
+  if (!isAdmins && !GssCreator) return reply('you are not an admin')
+if (!text) return reply(`Contoh ${prefix+command} linkgc`)
+if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('Link Invalid!')
+let result = args[0].split('https://chat.whatsapp.com/')[1]
+await client.groupAcceptInvite(result)
+await reply(`Done`)
+}
+break
+
+            
+case 'invite': {
+  if (!m.isGroup) return reply('Only for groups');
+  if (!isAdmins && !GssCreator) return reply('you are not an admin')
+if (!text) return reply(`Enter the number you want to invite to the group\n\nExample :\n*${prefix + command}* 919142294671`)
+if (text.includes('+')) return reply(`Enter the number together without *+*`)
+if (isNaN(text)) return reply(`Enter only the numbers plus your country code without spaces`)
+let group = m.chat
+let link = 'https://chat.whatsapp.com/' + await client.groupInviteCode(group)
+      await client.sendMessage(text+'@s.whatsapp.net', {text: `≡ *GROUP INVITATION*\n\nA user invites you to join this group \n\n${link}`, mentions: [m.sender]})
+        reply(` An invite link is sent to the user`) 
+}
+break
+    
+    
+case 'antilinkgc': {
+    1
+    if (!isAdmins && !gsscreator) return reply('Test');
+    
+    if (args[0] === "on") {
+        if (Antilinkgc) return reply('Already activated');
+        ntlinkgc.push(from);
+        fs.writeFileSync('./database/antilinkgc.json', JSON.stringify(ntlinkgc));
+        reply('Success in turning on antilink in this group');
+        
+        var groupe = await client.groupMetadata(from);
+        var members = groupe['participants'];
+        var mems = [];
+        
+        members.forEach(adm => {
+            mems.push(adm.id.replace('c.us', 's.whatsapp.net'));
+        });
+        
+        // Send the warning message only once
+        client.sendMessage(from, {text: `\`\`\`「 ️ Warning 」\`\`\`\n\nNobody is allowed to send group links in this group. Those who send links will be kicked immediately!`, contextInfo: { mentionedJid: mems }}, { quoted: m });
+    } else if (args[0] === "off") {
+        if (!Antilinkgc) return reply('Already deactivated');
+        let off = ntlinkgc.indexOf(from);
+        ntlinkgc.splice(off, 1);
+        fs.writeFileSync('./database/antilinkgc.json', JSON.stringify(ntlinkgc));
+        reply('Success in turning off antilink in this group');
+    } else {
+        await reply(`Please type the option\n\nExample: ${prefix + command} on\nExample: ${prefix + command} off\n\n"on" to enable\n"off" to disable`);
+    }
+}
+break;
+
+
+
 
 default: {
   if (isCmd && budy.toLowerCase() != undefined) {
