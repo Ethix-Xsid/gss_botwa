@@ -474,19 +474,35 @@ if (Antilinkgc) {
     }            
 }
         
-      const pp = './menu.jpg'; 
+      const pp = './media/thumbnail/menu.jpg'; 
 // ...
 
 const isPublic = client.public;
 if (isCmd) {
   switch (command) {
     case 'menu':
+      const reactionMessage = {
+            react: {
+                text: "🕐",
+                key: m.key
+            }
+        }
+        await client.sendMessage(m.chat, reactionMessage);
+        const successReactionMessage = {
+            react: {
+                text: "📃",
+                key: m.key
+            }
+        }
+        await client.sendMessage(m.chat, successReactionMessage); 
       const menuText = mainMenu(pushname, pushwish, botname, OWNER_NAME, owner, prefix, hours, minutes, seconds, xtime, xdate, me, isPublic);
 
       await client.sendImage(m.chat, pp, menuText);
  
       break;
     case 'nsfwmenu':
+        if (!m.isGroup) return reply('this is only for group')
+  if (!AntiNsfw) return reply('nsfw not enable in this group')
       await m.reply(nsfwMenu);
       break;
 
@@ -523,6 +539,20 @@ case 'play':
 case 'ytmp3':
 case 'music':
 case 'audio':
+  const reactionMessage = {
+            react: {
+                text: "🕐",
+                key: m.key
+            }
+        }
+        await client.sendMessage(m.chat, reactionMessage);
+        const successReactionMessage = {
+            react: {
+                text: "🎵",
+                key: m.key
+            }
+        }
+        await client.sendMessage(m.chat, successReactionMessage); 
   if (!text) throw `Use example ${prefix + command} man meri jan`;
 
   let searchAudio = await yts(text);
@@ -599,6 +629,20 @@ case 'audio':
 case 'ytmp4':
 case 'video':
 case 'vid':
+  const reactionMessage = {
+            react: {
+                text: "🕐",
+                key: m.key
+            }
+        }
+        await client.sendMessage(m.chat, reactionMessage);
+        const successReactionMessage = {
+            react: {
+                text: "📽️",
+                key: m.key
+            }
+        }
+        await client.sendMessage(m.chat, successReactionMessage); 
   if (!text) throw `Use example ${prefix + command} man meri jan`;
 
   let searchVideo = await yts(text);
@@ -614,8 +658,8 @@ case 'vid':
   let captvidVideo = `
 ┏━━━━━━━━━━━━━━━━━━━━┓
 ┃ Video by Gss_Botwa
-┃ 📝 Title: ${titleVideo}
-┃ ⏳ Duration: ${timestampVideo}
+┃ ✒️ Title: ${titleVideo}
+┃ 🕠 Duration: ${timestampVideo}
 ┃ 👁️ Views: ${viewsVideo}
 ┃ 📅 Upload: ${agoVideo}
 ┃ 🔗 Link: ${urlVideo}
