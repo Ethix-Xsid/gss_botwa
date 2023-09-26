@@ -539,20 +539,6 @@ case 'play':
 case 'ytmp3':
 case 'music':
 case 'audio':
-  const reactionMessage = {
-            react: {
-                text: "🕐",
-                key: m.key
-            }
-        }
-        await client.sendMessage(m.chat, reactionMessage);
-        const successReactionMessage = {
-            react: {
-                text: "🎵",
-                key: m.key
-            }
-        }
-        await client.sendMessage(m.chat, successReactionMessage); 
   if (!text) throw `Use example ${prefix + command} man meri jan`;
 
   let searchAudio = await yts(text);
