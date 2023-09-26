@@ -43,7 +43,7 @@ const { pipeline } = require('stream');
 const { promisify } = require('util');
 const streamPipeline = promisify(pipeline);
 const reportedMessages = {};
-const me = m.quoted.sender;
+
 
 
   module.exports = client = async (client, m, chatUpdate, store) => {  
@@ -53,7 +53,7 @@ var budy = (typeof m.text == 'string' ? m.text : '')
 var prefix = /^[\\/!#.]/gi.test(body) ? body.match(/^[\\/!#.]/gi) : "/";  
 
 //let ntlinkgc =JSON.parse(fs.readFileSync('./database/antilinkgc.json'));
-  
+  const me = m.sender;
 //=================================================//
 const isCmd = body.startsWith(prefix)
 const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()//If you want a single prefix, you replace it with this = const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
