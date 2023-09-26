@@ -5,7 +5,7 @@ module.exports = {
   *${pushwish}*
   
  ╔═════════════════╗
- ║ 『 BOT INFO 』
+ ║   『 BOT INFO 』
  ║  ☬─────────────☬  
  ║ 🤖 *Bot Name*: ${botname}
  ║ 👤 *Owner Name*: ${OWNER_NAME}
@@ -14,29 +14,29 @@ module.exports = {
  ║ ⏳ *Uptime*: ${hours}h ${minutes}m ${seconds}s
  ║ 🌐 *Mode*: ${isPublic ? 'Public' : 'Self'}
  ╠═════════════════╣
- ║ 『 USER INFO 』 
+ ║   『 USER INFO 』 
  ║  ☬─────────────☬  
  ║ 🧑 *Name*: ${pushname}
  ║ 📞 *Number*: @${me.split('@')[0]}
  ║ ✅ *Premium*: ✅
  ╠═════════════════╣
- ║ 『 TIME INFO 』 
+ ║   『 TIME INFO 』 
  ║  ☬─────────────☬  
  ║ ⏰ *Time*: ${xtime}
  ║ 📅 *Date*: ${xdate}
  ╠═════════════════╣
- ║ 『 HELP 』
+ ║    『 HELP 』
  ║  ☬─────────────☬  
  ║ 🆘 Please Type */help*
  ╠═════════════════╣
- ║ 『 AI COMMANDS 』
+ ║  『 AI COMMANDS 』
  ║  ☬─────────────☬  
  ║ 1️⃣ .gpt 🅕
  ║ 2️⃣ .img 🅕
  ║ 3️⃣ .dalle 🅕
  ║ 4⃣.bard 🅕
  ╠═════════════════╣
- ║ 『 TOOLS MENU 』
+ ║   『 TOOLS MENU 』
  ║  ☬─────────────☬  
  ║ 🗣 .tts 🅕
  ║ 📋 .delete 🅅
@@ -47,7 +47,7 @@ module.exports = {
  ║ 📧 tempmail 🅕
  ║ 📩 checkmail 🅕
  ╠═════════════════╣
- ║ 『 GROUP MENU 』
+ ║   『 GROUP MENU 』
  ║  ☬─────────────☬  
  ║ 🚫 .kick @user 🅖
  ║ 🚫 .ban @user 🅖
@@ -66,7 +66,7 @@ module.exports = {
  ║ 🚫 .revoke 🅖
  ║ 💌 .invite 🅖
  ╠═════════════════╣
- ║ 『 OWNER MENU 』
+ ║  『 OWNER MENU 』
  ║  ☬─────────────☬  
  ║ ✏️ .setname 🅅
  ║ 📝 .setbio 🅅
@@ -87,15 +87,15 @@ module.exports = {
  ║ 📝 .autotyping 🅅
  ║ 🌟 .alwaysonline 🅅
  ╠═══════════════╣
- ║ 『 BUG REPORTING 』
+ ║  『 BUG REPORTING 』
  ║  ☬─────────────☬  
  ║ 🐞 .bug 🅕
- ╠═════════════════╣
+ ╠═══════════════╣
  ║ [🎨]『 STICKER MENU 』
  ║  ☬─────────────☬  
  ║ 🎨 .sticker 🅕
- ╠═════════════════╣
- ║ 『 SEARCH MENU 』
+ ╠═══════════════╣
+ ║  『 SEARCH MENU 』
  ║  ☬─────────────☬ 
  ║ 🔍 .google 🅕
  ║ 📷 .insta 🅕
@@ -105,29 +105,29 @@ module.exports = {
  ║ 🎵 - .lyrics 🅕
  ║ 🕵️️ - .githubstalk 🅕
  ║ 👤 - .igs 🅕
- ╠═════════════════╣
- ║『 DOWNLOAD MENU 』
+ ╠═══════════════╣
+ ║ 『 DOWNLOAD MENU 』
  ║ ☬─────────────☬ 
  ║ 📽️ - .video 🅕
  ║ 🎵 - .song 🅕
  ║ 📂 - .fb 🅕
  ║ 📦 - .gdrive 🅕
  ║ 📦 - .gitclone 🅕
- ╠════════════════╣
- ║ [💢]『 ANIME 18+ MENU 』
+ ╠══════════════╣
+ ║  『 ANIME 18+ MENU 』
  ║ ☬─────────────────☬ 
  ║ 🚫 - .antinsfw 🅕
  ║ 🔞 - .nsfwmenu 🅕
- ╚═════════════════╝
- ╔═════════════════╗
+ ╚═══════════════╝
+ ╔═══════════════╗
  ║🤖 𝐆𝐒𝐒_𝚩𝚯𝚻𝐖𝚫
- ║═════════════════
+ ║════════════════
  ║  👨‍💻 *𝐂𝐫𝐞𝐚𝐭𝐞𝐝 𝐛𝐲 𝐠𝐬𝐬 𝐭𝐞𝐚𝐦*
- ╚═════════════════╝
+ ╚═══════════════╝
 `,
   nsfwmenu: `
- ╔═════════════════╗
- ║ 『 ANIME (18+) 』
+ ╔═══════════════╗
+ ║   『 ANIME (18+) 』
  ║  ☬─────────────────☬  
  ║ 🍑 - .hentai 🅕 
  ║ 😺 - .neko  🅕 
@@ -160,10 +160,10 @@ module.exports = {
  ║ 👭 - .yuri 🅕 
  ║ 🩱 - .zettai 🅕 
  ╚═══════════════╝
- ╔═════════════════╗
+ ╔═══════════════╗
  ║🤖 𝐆𝐒𝐒_𝚩𝚯𝚻𝐖𝚫
- ║═════════════════
+ ║════════════════
  ║  👨‍💻 *𝐂𝐫𝐞𝐚𝐭𝐞𝐝 𝐛𝐲 𝐠𝐬𝐬 𝐭𝐞𝐚𝐦*
- ╚═════════════════╝
+ ╚═══════════════╝
   `
 };
