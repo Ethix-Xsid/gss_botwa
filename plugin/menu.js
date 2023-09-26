@@ -7,79 +7,79 @@ module.exports = {
  ╔═════════════════╗
  ║      『 BOT INFO 』
  ║  ☬─────────────☬  
- ║ 🤖 *Bot Name*: ${botname}
- ║ 👤 *Owner Name*: ${OWNER_NAME}
- ║ 👨‍💻 *Number*: ${owner}
- ║ 🚀 *Prefix*: ${prefix}
- ║ ⏳ *Uptime*: ${hours}h ${minutes}m ${seconds}s
- ║ 🌐 *Mode*: ${isPublic ? 'Public' : 'Self'}
+ ║ 🤖 *BOT NAME*: ${botname}
+ ║ 👤 *OWNER NAME*: ${OWNER_NAME}
+ ║ 👨‍💻 *NUMBER*: ${owner}
+ ║ 🚀 *PREFIX*: ${prefix}
+ ║ ⏳ *UPTIMEt: ${hours}h ${minutes}m ${seconds}s
+ ║ 🌐 *MODE*: ${isPublic ? 'Public' : 'Self'}
  ╠═════════════════╣
  ║       『 USER INFO 』 
  ║  ☬─────────────☬  
- ║ 🧑 *Name*: ${pushname}
- ║ 📞 *Number*: @${me.split('@')[0]}
- ║ ✅ *Premium*: ✅
+ ║ 🧑 *NAME*: ${pushname}
+ ║ 📞 *NUMBER*: @${me.split('@')[0]}
+ ║ ✅ *PREMIUM: ✅
  ╠═════════════════╣
  ║      『 TIME INFO 』 
  ║  ☬─────────────☬  
- ║ ⏰ *Time*: ${xtime}
- ║ 📅 *Date*: ${xdate}
+ ║ ⏰ *TIME: ${xtime}
+ ║ 📅 *DATE*: ${xdate}
  ╠═════════════════╣
  ║       『 HELP 』
  ║  ☬─────────────☬  
- ║ 🆘 Please Type */help*
+ ║ 🆘 Please Type */HELP*
  ╠═════════════════╣
  ║     『 AI COMMANDS 』
  ║  ☬─────────────☬  
- ║ 1️⃣ .gpt 🅕
- ║ 2️⃣ .img 🅕
- ║ 3️⃣ .dalle 🅕
- ║ 4⃣.bard 🅕
+ ║ 1️⃣ .GPT 🅕
+ ║ 2️⃣ .IMG 🅕
+ ║ 3️⃣ .DALLE 🅕
+ ║ 4⃣.BARD 🅕
  ╠═════════════════╣
  ║      『 TOOLS MENU 』
  ║  ☬─────────────☬  
- ║ 🗣 .tts 🅕
- ║ 📋 .delete 🅅
- ║ 🌐 .translate 🅕
- ║ ℹ️ .info 🅕
- ║ 🧬 Getbio 🅕
- ║ 🖇️ tinyurl 🅕
- ║ 📧 tempmail 🅕
- ║ 📩 checkmail 🅕
+ ║ 🗣 .TTS 🅕
+ ║ 📋 .DELETE 🅅
+ ║ 🌐 .TRANSLATE 🅕
+ ║ ℹ️ .INFO 🅕
+ ║ 🧬 .GETBIO 🅕
+ ║ 🖇️ .TINYURL 🅕
+ ║ 📧 .TEMPMAIL 🅕
+ ║ 📩 .CHECKMAIL 🅕
  ╠═════════════════╣
  ║      『 GROUP MENU 』
  ║  ☬─────────────☬  
- ║ 🚫 .kick @user 🅖
- ║ 🚫 .ban @user 🅖
- ║ ➕ .add @user 🅖
- ║ 👑 .promote @user 🅖
- ║ 👤 .demote @user 🅖
- ║ 📣 .group off/on 🅖
- ║ 🔗 .linkgc 🅖
- ║ 🕠 .closetime 🅖
- ║ 🕥 .opentime 🅖
- ║ ⛓️ .Antilinkgc 🅖
- ║ 🗣️ .antitoxi 🅖
- ║ 🚪 .leavegc 🅖
- ║ 📊 .poll 🅖
- ║ 🤝 .join 🅖
- ║ 🚫 .revoke 🅖
- ║ 💌 .invite 🅖
+ ║ 🚫 .KICK @user 🅖
+ ║ 🚫 .BAN @user 🅖
+ ║ ➕ .ADD @User
+ ║ 👑 .PROMOTE @user 🅖
+ ║ 👤 .DEMOTE @user 🅖
+ ║ 📣 .GROUP off/on 🅖
+ ║ 🔗 .LINKGC 🅖
+ ║ 🕠 .CLOSETIME 🅖
+ ║ 🕥 .OPENTIME 🅖
+ ║ ⛓️ .ANTILINKGC 🅖
+ ║ 🗣️ .ANTITOXIC 🅖
+ ║ 🚪 .LEAVEGC 🅖
+ ║ 📊 .POLL 🅖
+ ║ 🤝 .JOIN 🅖
+ ║ 🚫 .REVOKE 🅖
+ ║ 💌 .INVITE 🅖
  ╠═════════════════╣
  ║     『 OWNER MENU 』
  ║  ☬─────────────☬  
- ║ ✏️ .setname 🅅
- ║ 📝 .setbio 🅅
- ║ 🚫 .block 🅅
- ║ ✅ .unblock 🅅
- ║ 😴 .sleep 🅅
- ║ 🔁 .autoread 🅅
- ║ 🌐 .self 🅅
- ║ 🌍 .public 🅅
- ║ 🆕 .addowner 🅅
- ║ 🚮 .delowner 🅅
- ║ ➕ .addrpem 🅅
- ║ ➖ .delprem 🅅
+ ║ ✏️ .SETNAME 🅅
+ ║ 📝 .SETBIO 🅅
+ ║ 🚫 .BLOCK 🅅
+ ║ ✅ .UNBLOCK
+ ║ 😴 .SLEEP 🅅
+ ║ 🔁 .AUTOREAD 🅅
+ ║ 🌐 .SELF 🅅
+ ║ 🌍 .PUBLIC 🅅
+ ║ 🆕 .ADDOWNER 🅅
+ ║ 🚮 .DELOWNER 🅅
+ ║ ➕ .ADDPREM
+ ║ ➖ .DELPREM
  ║ ➕🚫 .addbadword 🅅
  ║ ➖🚫 .delbadword 🅅
  ║ 📋 .listprem 🅅
