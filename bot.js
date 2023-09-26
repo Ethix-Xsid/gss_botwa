@@ -93,7 +93,6 @@ const owner = "919142294671";
 const MODE = process.env.MODE;
 
 //const thinking = await client.sendMessage(m.chat, { text: 'Thinking...' }); 
-const USER_NAME  = process.env.USER_NAME || ''
 const APIKEY = process.env.APIKEY;
 const mentionUser = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.sender] : [])])]
 
