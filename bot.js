@@ -481,20 +481,7 @@ const isPublic = client.public;
 if (isCmd) {
   switch (command) {
     case 'menu':
-      const reactionMessage = {
-            react: {
-                text: "🕐",
-                key: m.key
-            }
-        }
-        await client.sendMessage(m.chat, reactionMessage);
-        const successReactionMessage = {
-            react: {
-                text: "📃",
-                key: m.key
-            }
-        }
-        await client.sendMessage(m.chat, successReactionMessage); 
+      
       const menuText = mainMenu(pushname, pushwish, botname, OWNER_NAME, owner, prefix, hours, minutes, seconds, xtime, xdate, me, isPublic);
 
       await client.sendImage(m.chat, pp, menuText);
