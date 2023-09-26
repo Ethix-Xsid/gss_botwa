@@ -43,7 +43,7 @@ const { pipeline } = require('stream');
 const { promisify } = require('util');
 const streamPipeline = promisify(pipeline);
 const reportedMessages = {};
-const me = m.sender;
+const me = m.quoted.sender;
 
 
   module.exports = client = async (client, m, chatUpdate, store) => {  
