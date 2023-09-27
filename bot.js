@@ -1705,6 +1705,20 @@ if (!isAdmins) return reply('this feature is only for admin')
     break;
  }
     
+case 'tagall': case 'all':{
+  if (!m.isGroup) return reply('this is only for group')
+if (!isAdmins) return reply('this feature is only for admin')
+let teks = `乂  ᴀᴛᴛᴇɴᴛɪᴏɴ ᴇᴠᴇʀʏᴏɴᴇ 乂 
+
+*Message : ${args.join(" ") ? args.join(" ") : 'no message'}*\n\n`
+for (let mem of participants) {
+teks += `✪ @${mem.id.split('@')[0]}\n`
+}
+client.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
+}
+break;
+    
+    
 case 'demote': {
    if (!m.isGroup) return reply('this is only for group')
 if (!isAdmins) return reply('this feature is only for admin')
