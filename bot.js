@@ -2343,35 +2343,6 @@ case 'githubstalk': {
   break;
 }
 
-
-case 'tagall':
-   if (!m.isGroup) return reply('this is only for group')
-if (!isAdmins) return reply('this feature is only for admin')
-    // Fetch group metadata
-    const groupMetadata = await client.groupMetadata(m.chat);
-
-    // Check if group metadata is available
-    if (!groupMetadata) {
-        return reply(`Unable to fetch group metadata.`);
-    }
-
-    // Extract the list of participants from group metadata
-    const participants = groupMetadata.participants || [];
-
-    // Check if there are participants
-    if (participants.length === 0) {
-        return reply(`No participants found in this group.`);
-    }
-
-    // Create the tagall message
-    const readmore = String.fromCharCode(8206).repeat(4001);
-    const tagallMessage = `${participants.map(v => '◦  @' + v.id.replace(/@.+/, '')).join(' ')}`;
-    const finalMessage = `乂  *E V E R Y O N E*\n\n*“Hello everyone, check out this important message!”*\n${readmore}\n${tagallMessage}`;
-
-    // Send the tagall message
-    await client.sendMessage(m.chat, finalMessage, m);
-    break;
-
 case 'addowner':
   if (!GssCreator && !GssOwner) return reply('you are not my owner')
 if (!args[0]) return reply(`Use ${prefix+command} number\nExample${prefix+command} ${owner}`)
